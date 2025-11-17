@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: saas-backend
+  labels:
+    app: saas-platform
+    component: backend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: saas-platform
+    component: backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: saas-frontend
+  labels:
+    app: saas-platform
+    component: frontend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: saas-platform
+    component: frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: saas-platform
+    component: database
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5432
+    targetPort: 5432
+    protocol: TCP
+    name: postgresql
+  selector:
+    app: saas-platform
+    component: database
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    app: saas-platform
+    component: cache
+spec:
+  type: ClusterIP
+  ports:
+  - port: 6379
+    targetPort: 6379
+    protocol: TCP
+    name: redis
+  selector:
+    app: saas-platform
+    component: cache

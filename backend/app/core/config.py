@@ -3,6 +3,7 @@ Application Configuration Management
 Handles all environment variables and application settings
 """
 import secrets
+import json
 from typing import List, Optional, Union
 from pydantic import AnyHttpUrl, EmailStr, PostgresDsn, RedisDsn, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -31,9 +32,11 @@ class Settings(BaseSettings):
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
     @classmethod
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
-        if isinstance(v, str) and not v.startswith("["):
-            return [i.strip() for i in v.split(",")]
-        elif isinstance(v, (list, str)):
+        if isinstance(v, str):
+            if v.startswith("["):
+                return json.loads(v)
+            return [i.strip() for i in v.split(",") if i.strip()]
+        elif isinstance(v, list):
             return v
         raise ValueError(v)
 

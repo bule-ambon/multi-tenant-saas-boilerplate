@@ -58,10 +58,20 @@ class User(Base):
     deleted_at = Column(DateTime(timezone=True), nullable=True)
 
     # Relationships
-    tenant_memberships = relationship("TenantMembership", back_populates="user", cascade="all, delete-orphan")
+    tenant_memberships = relationship(
+        "TenantMembership",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        foreign_keys="TenantMembership.user_id",
+    )
     devices = relationship("UserDevice", back_populates="user", cascade="all, delete-orphan")
     sessions = relationship("UserSession", back_populates="user", cascade="all, delete-orphan")
-    roles = relationship("UserRole", back_populates="user", cascade="all, delete-orphan")
+    roles = relationship(
+        "UserRole",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        foreign_keys="UserRole.user_id",
+    )
 
     def __repr__(self):
         return f"<User {self.email}>"

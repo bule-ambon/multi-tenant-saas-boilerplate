@@ -26,8 +26,6 @@ class Role(Base):
     __table_args__ = (
         # Ensure role names are unique within a tenant
         UniqueConstraint("tenant_id", "name", name="uq_tenant_role_name"),
-        # Enable RLS for tenant isolation
-        {"postgresql_enable_row_level_security": True},
     )
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
@@ -99,8 +97,6 @@ class RolePermission(Base):
     __tablename__ = "role_permissions"
     __table_args__ = (
         UniqueConstraint("role_id", "permission_id", name="uq_role_permission"),
-        # Enable RLS for tenant isolation
-        {"postgresql_enable_row_level_security": True},
     )
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
@@ -131,8 +127,6 @@ class UserRole(Base):
     __tablename__ = "user_roles"
     __table_args__ = (
         UniqueConstraint("user_id", "role_id", "tenant_id", name="uq_user_role_tenant"),
-        # Enable RLS for tenant isolation
-        {"postgresql_enable_row_level_security": True},
     )
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)

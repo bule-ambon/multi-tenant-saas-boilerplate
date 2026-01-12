@@ -282,7 +282,7 @@ class UsageRecord(Base):
     period_end = Column(DateTime(timezone=True), nullable=False)
 
     # Metadata
-    metadata = Column(JSON, nullable=True)
+    usage_metadata = Column("metadata", JSON, nullable=True)
 
     # Timestamps
     recorded_at = Column(DateTime(timezone=True), default=datetime.utcnow, nullable=False, index=True)

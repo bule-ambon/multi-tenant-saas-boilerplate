@@ -17,11 +17,6 @@ class AuditLog(Base):
     """
 
     __tablename__ = "audit_logs"
-    __table_args__ = (
-        # Enable RLS for tenant isolation
-        {"postgresql_enable_row_level_security": True},
-    )
-
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
     tenant_id = Column(UUID(as_uuid=True), ForeignKey("tenants.id", ondelete="CASCADE"), nullable=True, index=True)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True)
@@ -42,7 +37,7 @@ class AuditLog(Base):
     status_code = Column(String(10), nullable=True)  # HTTP status code or custom code
 
     # Additional Data
-    metadata = Column(JSON, nullable=True)  # Additional context
+    audit_metadata = Column("metadata", JSON, nullable=True)  # Additional context
     changes = Column(JSON, nullable=True)  # Before/after for updates
     error_message = Column(Text, nullable=True)
 

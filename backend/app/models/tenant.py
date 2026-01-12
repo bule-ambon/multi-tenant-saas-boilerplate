@@ -88,11 +88,6 @@ class TenantMembership(Base):
     """User membership in tenants"""
 
     __tablename__ = "tenant_memberships"
-    __table_args__ = (
-        # Enable RLS for tenant isolation
-        {"postgresql_enable_row_level_security": True},
-    )
-
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     tenant_id = Column(UUID(as_uuid=True), ForeignKey("tenants.id", ondelete="CASCADE"), nullable=False, index=True)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)

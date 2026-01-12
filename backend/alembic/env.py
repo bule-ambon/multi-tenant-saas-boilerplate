@@ -27,7 +27,7 @@ from app.models import *  # noqa
 config = context.config
 
 # Override sqlalchemy.url with our settings
-config.set_main_option("sqlalchemy.url", settings.database_url_sync)
+config.set_main_option("sqlalchemy.url", settings.database_url_async)
 
 # Interpret the config file for Python logging
 if config.config_file_name is not None:

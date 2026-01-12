@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -21,6 +21,10 @@ RUN npm run build
 FROM node:20-alpine
 
 WORKDIR /app
+
+# Install dependencies for dev container use
+COPY package*.json ./
+RUN npm install
 
 # Install serve for production
 RUN npm install -g serve

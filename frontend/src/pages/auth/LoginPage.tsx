@@ -1,6 +1,6 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { login } from '../../services/auth'
+import { isAuthenticated, login } from '../../services/auth'
 
 const LoginPage = () => {
   const navigate = useNavigate()
@@ -11,6 +11,12 @@ const LoginPage = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate('/dashboard', { replace: true })
+    }
+  }, [navigate])
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault()

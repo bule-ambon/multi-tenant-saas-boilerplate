@@ -4,6 +4,7 @@ Handles login, registration, OAuth, MFA, password reset, etc.
 """
 from datetime import datetime, timedelta
 from typing import Optional
+from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -46,7 +47,7 @@ class TokenResponse(BaseModel):
 
 
 class UserResponse(BaseModel):
-    id: str
+    id: UUID
     email: str
     full_name: Optional[str]
     is_verified: bool

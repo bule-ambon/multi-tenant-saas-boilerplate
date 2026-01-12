@@ -10,3 +10,9 @@
 - Added register form, validation, and login messaging in the auth UI.
 - Added token storage, refresh, and auth-aware route guard behavior.
 - Added basic auth session tests for token expiry handling.
+
+# Auth Register Fix Plan
+
+- [x] Fix register response schema to accept UUID IDs.
+- [x] Restart backend and re-test register flow.
+- [x] Update activity log with the fix.

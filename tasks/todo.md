@@ -28,3 +28,13 @@
 - Added a dev cert generation script and nginx HTTPS configuration.
 - Switched the frontend API base URL to HTTPS for local proxying.
 - Enabled React Router future flags to silence v7 warnings.
+
+# Vite HMR over HTTPS Plan
+
+- [x] Add Vite config to use WSS HMR behind nginx (client host/port/protocol).
+- [x] Update nginx to proxy WebSocket upgrade headers for Vite.
+- [x] Restart frontend/nginx and verify HMR connects over WSS.
+
+## Change Summary
+- Added Vite config to point HMR to WSS on the nginx HTTPS endpoint.
+- Updated nginx to forward WebSocket upgrade headers for Vite HMR.

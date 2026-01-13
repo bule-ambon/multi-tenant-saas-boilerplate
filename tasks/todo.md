@@ -41,8 +41,13 @@
 
 # Client Groups + Entity Access Plan
 
-- [ ] Review existing tenant/user/role models and alembic baseline for integration points.
-- [ ] Add SQLAlchemy models and exports for client groups, group entities, group memberships, and entity memberships.
-- [ ] Create Alembic migration with tenant-scoped tables and client-group uniqueness constraint.
-- [ ] Add or note tests for the client role group constraint (if test infra exists).
-- [ ] Update docs: append activity log and add change summary to tasks/todo.md.
+- [x] Review existing tenant/user/role models and alembic baseline for integration points.
+- [x] Add SQLAlchemy models and exports for client groups, group entities, group memberships, and entity memberships.
+- [x] Create Alembic migration with tenant-scoped tables and client-group uniqueness constraint.
+- [x] Add or note tests for the client role group constraint (if test infra exists). (No backend tests found.)
+- [x] Update docs: append activity log and add change summary to tasks/todo.md.
+
+## Change Summary
+- Added client group and entity membership models with tenant-scoped constraints and indexes.
+- Added Alembic migration for client groups, memberships, and client-only uniqueness enforcement.
+- Noted missing backend test infrastructure for the requested constraint coverage.

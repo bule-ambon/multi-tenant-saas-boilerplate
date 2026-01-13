@@ -4,3 +4,4 @@
 - Fixed register response schema to accept UUID IDs.
 - Added HTTPS dev setup with self-signed certs and enabled React Router future flags.
 - Configured Vite HMR to connect over WSS through nginx.
+- Added client group and entity membership models/migration with a client-only uniqueness constraint.

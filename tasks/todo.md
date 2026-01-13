@@ -74,7 +74,7 @@
 - [x] Update models to reflect the tightened constraints.
 - [x] Add or note tests for constraint enforcement (if test infra exists). (No backend tests found.)
 - [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
-- [ ] Commit and push changes with Conventional Commits.
+- [x] Commit and push changes with Conventional Commits.
 
 ## Change Summary
 - Enabled RLS and tenant isolation policies for client group and entity membership tables.

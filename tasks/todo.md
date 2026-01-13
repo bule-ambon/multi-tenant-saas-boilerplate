@@ -167,7 +167,7 @@
 - [x] Update pytest-asyncio event loop configuration to the recommended marker-based approach.
 - [x] Run the affected tests.
 - [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
-- [ ] Commit and push changes with Conventional Commits.
+- [x] Commit and push changes with Conventional Commits.
 
 ## Change Summary
 - Updated pytest config to use auto asyncio mode and removed custom event loop fixture.

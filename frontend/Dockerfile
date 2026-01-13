@@ -7,6 +7,7 @@ WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
+COPY vite.config.ts ./
 
 # Install dependencies
 RUN npm install

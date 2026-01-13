@@ -162,6 +162,18 @@
 - Added integration tests covering client membership uniqueness and visibility filters.
 - Updated tenant context setter to use set_config for asyncpg compatibility.
 
+# Pytest Asyncio Update Plan
+
+- [x] Update pytest-asyncio event loop configuration to the recommended marker-based approach.
+- [x] Run the affected tests.
+- [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
+- [ ] Commit and push changes with Conventional Commits.
+
+## Change Summary
+- Updated pytest config to use auto asyncio mode and removed custom event loop fixture.
+- Disposed the async engine after client group endpoint tests to avoid loop reuse errors.
+- Re-ran client group endpoint tests successfully.
+
 ## Change Summary
 - Enforced tenant UUID header parsing and tenant context propagation in async DB sessions.
 - Added tenant access/visibility helpers for client groups and entity memberships.

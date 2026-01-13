@@ -7,7 +7,7 @@ from sqlalchemy import delete, select
 
 from app.api.v1.auth import get_current_user
 from app.core.config import settings
-from app.core.database import AsyncSessionLocal, set_tenant_context_async
+from app.core.database import AsyncSessionLocal, async_engine, set_tenant_context_async
 from app.main import app
 from app.models.client_group import ClientGroup, ClientGroupEntity, ClientGroupMembership
 from app.models.entity import Entity
@@ -75,6 +75,8 @@ async def seeded_data():
         await session.execute(delete(Tenant).where(Tenant.id == tenant.id))
         await session.execute(delete(User).where(User.id.in_([admin_user.id, client_user.id])))
         await session.commit()
+
+    await async_engine.dispose()
 
 
 @pytest.mark.asyncio

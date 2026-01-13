@@ -17,3 +17,4 @@
 - Wired tenant header validation into tenant endpoints and ran access tests in the backend container.
 - Added entity + QBO connection models, migrations, endpoints, and tests for the 1:1 realm constraint.
 - Added client group CRUD/membership endpoints and integration tests for visibility and membership constraints.
+- Adjusted pytest-asyncio setup and disposed the async engine in tests to avoid loop reuse errors.

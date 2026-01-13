@@ -178,3 +178,33 @@
 - Enforced tenant UUID header parsing and tenant context propagation in async DB sessions.
 - Added tenant access/visibility helpers for client groups and entity memberships.
 - Added unit tests for access checks (pytest not available in environment).
+
+# QBO Import Runs + Trial Balance Plan
+
+- [x] Review existing QBO/entity models, migrations, and docs for data model alignment.
+- [x] Add schema/models for import runs, trial balance snapshots, and lines with source provenance.
+- [x] Create Alembic migration for new QBO ingestion tables and constraints.
+- [x] Add or note tests for new models (if test infra exists).
+- [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
+- [ ] Commit and push changes with Conventional Commits.
+
+## Change Summary
+- Added new import run, trial balance, and client group tax-year models plus migration and ORM wiring.
+- Implemented QBO OAuth connect flow, import run API, and Celery ingestion pipeline with rate-limit handling and new tests.
+- Logged the work in `docs/activity.md` and outlined the change summary here.
+
+# Websocket Debug Plan
+
+- [x] Identify all websocket/HMR usage, paying special attention to the `/?token=` URL noise.
+- [x] Track which server should accept the websocket connection and nail down its expected URL/host/port.
+- [x] Investigate host mismatch/proxy settings (Vite/Next/nginx/Docker) causing `localhost` vs `192.168.4.53` swap.
+- [x] Apply the minimal config/code fix to align hosts/ports and restore websocket upgrades.
+- [x] Record the change summary plus validation commands in `tasks/todo.md` and note activity in `docs/activity.md`.
+
+## Change Summary
+- Allowed `vite.config.ts` to skip custom HMR wiring when no `VITE_HMR_HOST` is provided, while still honoring the host/protocol/port environment vars for the nginx proxy environment.
+- Documented the work in `docs/activity.md` and kept the docker-compose frontend service wired with the TLS host/port variables so nginx-backed development still routes WSS correctly.
+
+## Validation
+- `cd frontend && npm run dev` (direct dev) should now connect to `ws://localhost:3000` or `https://localhost` without hitting 192.168.4.53, eliminating the NS_ERROR_* resets.
+- `docker compose up` (or `npm run dev` with `VITE_HMR_HOST=192.168.4.53 VITE_HMR_PROTOCOL=wss VITE_HMR_CLIENT_PORT=443`) should continue to serve the app via nginx at `https://192.168.4.53` with WSS over port 443.

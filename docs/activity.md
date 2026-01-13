@@ -18,3 +18,6 @@
 - Added entity + QBO connection models, migrations, endpoints, and tests for the 1:1 realm constraint.
 - Added client group CRUD/membership endpoints and integration tests for visibility and membership constraints.
 - Adjusted pytest-asyncio setup and disposed the async engine in tests to avoid loop reuse errors.
+- Added QBO import run persistence, OAuth connect flow, Celery ingestion worker, and persistence/API updates for trial balance snapshots plus metadata tests.
+- Fixed the `create_import_run` signature so the backend process can start, which restored the login API and removed the infinite loop the UI was seeing.
+- Added env-driven Vite HMR host config plus docker compose vars so local dev sockets use whichever hostname is served (localhost during direct dev, 192.168.4.53 behind nginx), fixing the NS_ERROR_WEBSOCKET_CONNECTION failures.

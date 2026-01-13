@@ -141,7 +141,7 @@
 - [x] Implement CRUD endpoints for entities and QBO connections (no external API calls).
 - [x] Add unit tests for the 1:1 QBO connection constraint.
 - [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
-- [ ] Commit and push changes with Conventional Commits.
+- [x] Commit and push changes with Conventional Commits.
 
 ## Change Summary
 - Added entities and QBO connection models/migration with 1:1 realm and entity constraints.

@@ -104,3 +104,4 @@
 - [x] Run `docker-compose exec backend python scripts/ensure_client_role.py`.
 - [ ] Run `docker-compose exec backend alembic upgrade head`. (Failed: client_groups already exists.)
 - [x] Check current alembic revision (`docker-compose exec backend alembic current`).
+- [x] Inspect DB schema for `client_groups`, `client_group_entities`, `client_group_memberships`, and `entity_memberships`.

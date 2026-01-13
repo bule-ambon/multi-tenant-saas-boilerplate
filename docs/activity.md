@@ -10,3 +10,4 @@
 - Added a helper script to seed the global client role.
 - Updated agent workflow to allow routine command execution without asking.
 - Ran the client role seed script; alembic upgrade failed due to existing client_groups table.
+- Inspected database schema for client group tables; RLS policies are missing and alembic is still at 001.

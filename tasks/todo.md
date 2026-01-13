@@ -155,7 +155,7 @@
 - [x] Add endpoints for group entity assignments and visible group/entity listings.
 - [x] Add integration tests for client group endpoints.
 - [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
-- [ ] Commit and push changes with Conventional Commits.
+- [x] Commit and push changes with Conventional Commits.
 
 ## Change Summary
 - Added client group CRUD, entity assignment, membership, and visibility endpoints with tenant access checks.

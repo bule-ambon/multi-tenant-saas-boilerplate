@@ -86,7 +86,7 @@
 - [x] Review existing seed scripts and docs for role creation patterns.
 - [x] Add a small seed helper for the `client` role (if missing) or document SQL verification steps.
 - [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
-- [ ] Commit and push changes with Conventional Commits.
+- [x] Commit and push changes with Conventional Commits.
 
 ## Change Summary
 - Added a seed helper to ensure the global `client` role exists.

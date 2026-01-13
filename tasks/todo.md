@@ -105,3 +105,9 @@
 - [ ] Run `docker-compose exec backend alembic upgrade head`. (Failed: client_groups already exists.)
 - [x] Check current alembic revision (`docker-compose exec backend alembic current`).
 - [x] Inspect DB schema for `client_groups`, `client_group_entities`, `client_group_memberships`, and `entity_memberships`.
+- [x] Run `docker-compose exec backend alembic stamp 002`.
+- [x] Retry `docker-compose exec backend alembic upgrade head`.
+
+## Change Summary
+- Stamped alembic to 002 and applied the 003 migration after existing tables were detected.
+- Aligned client group relationships to avoid ORM overlap warnings.

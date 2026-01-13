@@ -36,10 +36,12 @@ class ClientGroup(Base):
     tenant = relationship("Tenant")
     entities = relationship(
         "ClientGroupEntity",
+        back_populates="client_group",
         cascade="all, delete-orphan",
     )
     memberships = relationship(
         "ClientGroupMembership",
+        back_populates="client_group",
         cascade="all, delete-orphan",
     )
 
@@ -73,7 +75,7 @@ class ClientGroupEntity(Base):
 
     created_at = Column(DateTime(timezone=True), default=datetime.utcnow, nullable=False)
 
-    client_group = relationship("ClientGroup")
+    client_group = relationship("ClientGroup", back_populates="entities")
     tenant = relationship("Tenant")
 
     def __repr__(self) -> str:
@@ -120,7 +122,7 @@ class ClientGroupMembership(Base):
     created_at = Column(DateTime(timezone=True), default=datetime.utcnow, nullable=False)
 
     user = relationship("User")
-    client_group = relationship("ClientGroup")
+    client_group = relationship("ClientGroup", back_populates="memberships")
     role = relationship("Role")
     tenant = relationship("Tenant")
 

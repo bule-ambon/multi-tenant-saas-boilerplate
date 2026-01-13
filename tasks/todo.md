@@ -1,0 +1,6 @@
+- [ ] Review existing models/migrations and identify schema additions for client groups and memberships
+- [ ] Draft Alembic migration for new tables, constraints, and indexes
+- [ ] Add SQLAlchemy models and exports for client groups and memberships
+- [ ] Update or add tests for the client group uniqueness constraint (if test infrastructure exists)
+- [ ] Update tasks/todo.md with a short change summary and log actions in docs/activity.md
+- [ ] Commit and push changes with Conventional Commits

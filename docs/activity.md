@@ -9,3 +9,4 @@
 - Added RLS policies and role constraints for client group memberships.
 - Added a helper script to seed the global client role.
 - Updated agent workflow to allow routine command execution without asking.
+- Ran the client role seed script; alembic upgrade failed due to existing client_groups table.

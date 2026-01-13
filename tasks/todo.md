@@ -98,3 +98,9 @@
 
 ## Change Summary
 - Updated AGENTS.md to allow routine command execution without asking, while logging in tasks/todo.md.
+
+# Runtime Commands
+
+- [x] Run `docker-compose exec backend python scripts/ensure_client_role.py`.
+- [ ] Run `docker-compose exec backend alembic upgrade head`. (Failed: client_groups already exists.)
+- [x] Check current alembic revision (`docker-compose exec backend alembic current`).

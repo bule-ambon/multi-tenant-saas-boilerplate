@@ -111,3 +111,4 @@
 ## Change Summary
 - Stamped alembic to 002 and applied the 003 migration after existing tables were detected.
 - Aligned client group relationships to avoid ORM overlap warnings.
+- Verified RLS policies and the roles slug unique constraint are present in the DB.

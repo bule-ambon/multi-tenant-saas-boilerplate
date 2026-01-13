@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import NullPool, QueuePool
 
 from app.core.config import settings
+from app.core.tenant import tenant_context
 
 # Base class for all models
 Base = declarative_base()
@@ -166,6 +167,9 @@ async def get_async_db() -> AsyncGenerator[AsyncSession, None]:
     """Dependency for getting asynchronous database sessions"""
     async with AsyncSessionLocal() as session:
         try:
+            tenant_id = tenant_context.get()
+            if tenant_id:
+                await set_tenant_context_async(session, tenant_id)
             yield session
             await session.commit()
         except Exception:

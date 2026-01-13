@@ -112,3 +112,17 @@
 - Stamped alembic to 002 and applied the 003 migration after existing tables were detected.
 - Aligned client group relationships to avoid ORM overlap warnings.
 - Verified RLS policies and the roles slug unique constraint are present in the DB.
+
+# Tenant Context Enforcement Plan
+
+- [x] Review existing tenant middleware, access checks, and TODOs for tenant validation.
+- [x] Add tenant UUID header-based helpers and reusable tenant/user visibility filters.
+- [x] Implement membership checks (admin/staff vs client group membership; entity-level access).
+- [x] Add unit tests for access checks.
+- [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
+- [ ] Commit and push changes with Conventional Commits.
+
+## Change Summary
+- Enforced tenant UUID header parsing and tenant context propagation in async DB sessions.
+- Added tenant access/visibility helpers for client groups and entity memberships.
+- Added unit tests for access checks (pytest not available in environment).

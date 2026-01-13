@@ -19,6 +19,12 @@ from app.core.tenant import (
     require_tenant,
     get_optional_tenant,
 )
+from app.core.access import (
+    apply_tenant_filter,
+    apply_client_group_visibility,
+    apply_entity_visibility,
+    get_user_role_slug,
+)
 
 __all__ = [
     "settings",
@@ -39,4 +45,8 @@ __all__ = [
     "get_current_tenant",
     "require_tenant",
     "get_optional_tenant",
+    "apply_tenant_filter",
+    "apply_client_group_visibility",
+    "apply_entity_visibility",
+    "get_user_role_slug",
 ]

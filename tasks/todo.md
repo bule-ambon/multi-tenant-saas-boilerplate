@@ -51,3 +51,17 @@
 - Added client group and entity membership models with tenant-scoped constraints and indexes.
 - Added Alembic migration for client groups, memberships, and client-only uniqueness enforcement.
 - Noted missing backend test infrastructure for the requested constraint coverage.
+
+# Docs Alignment Plan
+
+- [x] Review current codebase architecture references (FastAPI/React/Postgres) vs docs.
+- [x] Update docs/architecture.md to remove Laravel/Blade references and align with FastAPI + React.
+- [x] Update docs/requirements.md to align terminology with current tenant/user/role model.
+- [x] Update docs/data_model_overview.txt to reflect current tenant/user/role naming and stack.
+- [x] Update docs/activity.md with the documentation alignment action.
+- [x] Add a brief change summary to tasks/todo.md.
+
+## Change Summary
+- Updated architecture docs to reflect the current FastAPI + React structure and folders.
+- Aligned data model overview terminology with tenant-scoped roles and client groups.
+- Tweaked requirements language to match tenant-scoped role defaults.

@@ -38,7 +38,7 @@ Enable a CPA firm to ingest trial balance data (primarily from QuickBooks Online
 - **REQ-TEN-001**: System shall isolate all data by Firm (tenant). Cross-tenant data access is prohibited.
 
 #### 1.2 Users & Roles
-- **REQ-USER-001**: System shall support users within a firm with role-based permissions (Admin, Manager, Staff, Read-Only).
+- **REQ-USER-001**: System shall support tenant-scoped roles with role-based permissions (Admin, Manager, Staff, Read-Only as defaults).
 - **REQ-USER-002**: System shall support client-facing read-only users (optional in v1; may be firm-only for MVP).
 - **REQ-USER-003**: System shall audit user actions that modify financial data, mappings, agreements, and reconciliations.
 

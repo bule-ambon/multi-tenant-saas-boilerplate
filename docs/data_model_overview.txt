@@ -13,21 +13,31 @@ CORE DOMAINS
 
 1. TENANCY / ACCESS CONTROL
 --------------------------------
-Workspace
+Tenant (Firm)
 - id
 - name
+- slug
 - created_at
 
-Client
+ClientGroup (Engagement)
 - id
-- workspace_id
+- tenant_id
 - name
 
 User
 - id
-- workspace_id
-- role (admin, staff, client)
 - email
+
+Role (tenant-scoped)
+- id
+- tenant_id
+- name
+
+TenantMembership
+- id
+- tenant_id
+- user_id
+- role_id
 
 --------------------------------------------------
 2. ENTITIES & OWNERSHIP GRAPH
@@ -157,5 +167,5 @@ DESIGN PRINCIPLES
 - Raw QuickBooks data is never overwritten
 - All calculations are derived from snapshots + overlays
 - Effective dating is used for ownership and tax rules
-- Optimized for Laravel + Eloquent + migrations
+- Optimized for FastAPI + SQLAlchemy + Alembic
 - Structured for LLM-driven scaffolded development

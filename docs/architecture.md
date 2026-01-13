@@ -42,14 +42,14 @@ Passthrough Roll-Up & Reconciliation Platform (MVP) — a multi-tenant CPA web a
 ## Application Architecture
 
 ### Layers
-1. **Web UI (Laravel Blade)**
+1. **Web UI (React + Vite)**
    - Trial balance grid
    - Reconciliation views
    - Roll-up run dashboards (compute/publish/compare)
    - Agreements editor (ownership + allocations)
    - Calculated toggle
 
-2. **Application Layer (Controllers + Actions)**
+2. **API Layer (FastAPI Routers + Services)**
    - Validates inputs and permissions
    - Creates run records
    - Dispatches jobs
@@ -78,39 +78,24 @@ Passthrough Roll-Up & Reconciliation Platform (MVP) — a multi-tenant CPA web a
 
 ---
 
-## Directory Structure (Recommended)
+## Directory Structure (Current)
 ```txt
-app/
-  Domains/
-    Tenancy/
-    ClientGroups/
-    Entities/
-    IngestionQBO/
-    Agreements/
-    Financials/
-    Reconciliation/
-    Rollups/
-    YearClose/
-  Http/
-    Controllers/
-    Middleware/
-    Requests/
-  Jobs/
-  Models/
-  Policies/
+backend/
+  app/
+    api/
+    core/
+    middleware/
+    models/
+  alembic/
+    versions/
+  scripts/
 
-database/
-  migrations/
-  seeders/
-
-resources/
-  views/
-  css/
-  js/
-
-routes/
-  web.php
-  api.php
+frontend/
+  src/
+    components/
+    pages/
+    services/
+    hooks/
 ```
 
 ---

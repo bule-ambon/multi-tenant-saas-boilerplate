@@ -7,3 +7,4 @@
 - Added client group and entity membership models/migration with a client-only uniqueness constraint.
 - Aligned architecture and requirements docs with the current FastAPI + React stack.
 - Added RLS policies and role constraints for client group memberships.
+- Added a helper script to seed the global client role.

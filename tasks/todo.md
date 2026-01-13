@@ -80,3 +80,14 @@
 - Enabled RLS and tenant isolation policies for client group and entity membership tables.
 - Added a role slug uniqueness constraint and FK to tighten client group memberships.
 - Updated models to align with role-based membership enforcement.
+
+# Seed + Verification Plan
+
+- [x] Review existing seed scripts and docs for role creation patterns.
+- [x] Add a small seed helper for the `client` role (if missing) or document SQL verification steps.
+- [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
+- [ ] Commit and push changes with Conventional Commits.
+
+## Change Summary
+- Added a seed helper to ensure the global `client` role exists.
+- Logged the role seed helper addition in docs/activity.md.

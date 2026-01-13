@@ -110,7 +110,7 @@ class TenantValidator:
         """
         Validate that user has access to tenant
         """
-        from sqlalchemy import select, true
+        from sqlalchemy import select
 
         from app.models.tenant import TenantMembership
 
@@ -127,7 +127,7 @@ class TenantValidator:
         """
         Validate that tenant exists and is active
         """
-        from sqlalchemy import select
+        from sqlalchemy import select, true
 
         from app.models.tenant import Tenant
 

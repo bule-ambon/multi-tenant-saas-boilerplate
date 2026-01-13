@@ -14,3 +14,4 @@
 - Stamped alembic to 002, applied 003, and aligned client group relationships to avoid ORM overlap warnings.
 - Verified RLS policies exist for client group tables and roles.slug has a unique constraint.
 - Enforced tenant UUID header parsing, added access helpers, and added access-check unit tests (pytest unavailable locally).
+- Wired tenant header validation into tenant endpoints and ran access tests in the backend container.

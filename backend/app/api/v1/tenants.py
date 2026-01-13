@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from app.core.database import get_async_db
-from app.core.tenant import require_tenant
+from app.core.tenant import require_tenant, tenant_validator
 from app.models.tenant import Tenant, TenantMembership, TenantSettings
 from app.models.user import User
 from app.api.v1.auth import get_current_user
@@ -111,9 +111,21 @@ async def create_tenant(
 async def get_tenant(
     tenant_id: UUID,
     current_user: User = Depends(get_current_user),
+    tenant_header_id: str = Depends(require_tenant),
     db: AsyncSession = Depends(get_async_db),
 ):
     """Get tenant details"""
+    if not current_user.is_superuser and str(tenant_id) != tenant_header_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Tenant context does not match requested tenant",
+        )
+
+    if not await tenant_validator.validate_tenant_exists(str(tenant_id), db):
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Tenant not found",
+        )
 
     result = await db.execute(select(Tenant).where(Tenant.id == tenant_id))
     tenant = result.scalar_one_or_none()
@@ -164,9 +176,21 @@ async def update_tenant(
     tenant_id: UUID,
     tenant_data: TenantUpdate,
     current_user: User = Depends(get_current_user),
+    tenant_header_id: str = Depends(require_tenant),
     db: AsyncSession = Depends(get_async_db),
 ):
     """Update tenant details"""
+    if not current_user.is_superuser and str(tenant_id) != tenant_header_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Tenant context does not match requested tenant",
+        )
+
+    if not await tenant_validator.validate_tenant_access(str(tenant_id), str(current_user.id), db):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied",
+        )
 
     result = await db.execute(select(Tenant).where(Tenant.id == tenant_id))
     tenant = result.scalar_one_or_none()
@@ -194,9 +218,21 @@ async def update_tenant(
 async def delete_tenant(
     tenant_id: UUID,
     current_user: User = Depends(get_current_user),
+    tenant_header_id: str = Depends(require_tenant),
     db: AsyncSession = Depends(get_async_db),
 ):
     """Delete tenant (only owner can delete)"""
+    if not current_user.is_superuser and str(tenant_id) != tenant_header_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Tenant context does not match requested tenant",
+        )
+
+    if not await tenant_validator.validate_tenant_access(str(tenant_id), str(current_user.id), db):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied",
+        )
 
     result = await db.execute(select(Tenant).where(Tenant.id == tenant_id))
     tenant = result.scalar_one_or_none()

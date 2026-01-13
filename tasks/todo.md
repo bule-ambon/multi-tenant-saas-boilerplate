@@ -128,7 +128,7 @@
 - [x] Add unit tests for tenant header parsing and enforcement helpers.
 - [x] Run access tests inside the backend container.
 - [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
-- [ ] Commit and push changes with Conventional Commits.
+- [x] Commit and push changes with Conventional Commits.
 
 ## Change Summary
 - Wired tenant header validation into tenant endpoints and enforced membership checks.

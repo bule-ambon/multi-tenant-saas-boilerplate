@@ -133,8 +133,8 @@ def set_tenant_context(db_session: Session, tenant_id: Optional[str]):
     if settings.TENANCY_MODE == "shared" and tenant_id:
         # Set PostgreSQL session variable for RLS
         db_session.execute(
-            text("SET app.current_tenant_id = :tenant_id"),
-            {"tenant_id": tenant_id}
+            text("SELECT set_config('app.current_tenant_id', :tenant_id, true)"),
+            {"tenant_id": tenant_id},
         )
 
 
@@ -142,8 +142,8 @@ async def set_tenant_context_async(db_session: AsyncSession, tenant_id: Optional
     """Async version of set_tenant_context"""
     if settings.TENANCY_MODE == "shared" and tenant_id:
         await db_session.execute(
-            text("SET app.current_tenant_id = :tenant_id"),
-            {"tenant_id": tenant_id}
+            text("SELECT set_config('app.current_tenant_id', :tenant_id, true)"),
+            {"tenant_id": tenant_id},
         )
 
 

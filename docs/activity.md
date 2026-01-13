@@ -16,3 +16,4 @@
 - Enforced tenant UUID header parsing, added access helpers, and added access-check unit tests (pytest unavailable locally).
 - Wired tenant header validation into tenant endpoints and ran access tests in the backend container.
 - Added entity + QBO connection models, migrations, endpoints, and tests for the 1:1 realm constraint.
+- Added client group CRUD/membership endpoints and integration tests for visibility and membership constraints.

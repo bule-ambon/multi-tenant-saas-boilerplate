@@ -148,6 +148,20 @@
 - Implemented entity and QBO connection CRUD endpoints with tenant scoping and access checks.
 - Added and ran unit tests for the QBO connection uniqueness constraints.
 
+# Client Group API Plan
+
+- [x] Review client group models/migrations and access helper usage.
+- [x] Implement CRUD endpoints for client groups and membership assignments.
+- [x] Add endpoints for group entity assignments and visible group/entity listings.
+- [x] Add integration tests for client group endpoints.
+- [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
+- [ ] Commit and push changes with Conventional Commits.
+
+## Change Summary
+- Added client group CRUD, entity assignment, membership, and visibility endpoints with tenant access checks.
+- Added integration tests covering client membership uniqueness and visibility filters.
+- Updated tenant context setter to use set_config for asyncpg compatibility.
+
 ## Change Summary
 - Enforced tenant UUID header parsing and tenant context propagation in async DB sessions.
 - Added tenant access/visibility helpers for client groups and entity memberships.

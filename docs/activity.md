@@ -6,3 +6,4 @@
 - Configured Vite HMR to connect over WSS through nginx.
 - Added client group and entity membership models/migration with a client-only uniqueness constraint.
 - Aligned architecture and requirements docs with the current FastAPI + React stack.
+- Added RLS policies and role constraints for client group memberships.

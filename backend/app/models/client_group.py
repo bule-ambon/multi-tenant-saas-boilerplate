@@ -110,12 +110,18 @@ class ClientGroupMembership(Base):
         nullable=False,
         index=True,
     )
-    role_slug = Column(String(100), nullable=False, default="client")
+    role_slug = Column(
+        String(100),
+        ForeignKey("roles.slug", ondelete="RESTRICT"),
+        nullable=False,
+        default="client",
+    )
 
     created_at = Column(DateTime(timezone=True), default=datetime.utcnow, nullable=False)
 
     user = relationship("User")
     client_group = relationship("ClientGroup")
+    role = relationship("Role")
     tenant = relationship("Tenant")
 
     def __repr__(self) -> str:

@@ -26,6 +26,7 @@ class Role(Base):
     __table_args__ = (
         # Ensure role names are unique within a tenant
         UniqueConstraint("tenant_id", "name", name="uq_tenant_role_name"),
+        UniqueConstraint("slug", name="uq_roles_slug"),
     )
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)

@@ -65,3 +65,18 @@
 - Updated architecture docs to reflect the current FastAPI + React structure and folders.
 - Aligned data model overview terminology with tenant-scoped roles and client groups.
 - Tweaked requirements language to match tenant-scoped role defaults.
+
+# Client Group Constraints Plan
+
+- [x] Review existing RLS policies and role model usage for client membership constraints.
+- [x] Add Alembic migration to enable RLS and add policies for new client group tables.
+- [x] Tighten client group membership constraint to align with role model (role_id or role slug FK) and migrate data if needed.
+- [x] Update models to reflect the tightened constraints.
+- [x] Add or note tests for constraint enforcement (if test infra exists). (No backend tests found.)
+- [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
+- [ ] Commit and push changes with Conventional Commits.
+
+## Change Summary
+- Enabled RLS and tenant isolation policies for client group and entity membership tables.
+- Added a role slug uniqueness constraint and FK to tighten client group memberships.
+- Updated models to align with role-based membership enforcement.

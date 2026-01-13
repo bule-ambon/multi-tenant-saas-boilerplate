@@ -120,7 +120,7 @@
 - [x] Implement membership checks (admin/staff vs client group membership; entity-level access).
 - [x] Add unit tests for access checks.
 - [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
-- [ ] Commit and push changes with Conventional Commits.
+- [x] Commit and push changes with Conventional Commits.
 
 ## Change Summary
 - Enforced tenant UUID header parsing and tenant context propagation in async DB sessions.

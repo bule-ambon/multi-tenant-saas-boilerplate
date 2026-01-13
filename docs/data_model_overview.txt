@@ -1,0 +1,161 @@
+DATA MODEL OVERVIEW – MULTI-ENTITY ACCOUNTING & TAX PLANNING APP
+
+PURPOSE
+This document describes the core data model and domain concepts for a web app that:
+- Imports trial balances from QuickBooks
+- Models entity ownership and tax allocations
+- Reconciles intercompany transactions
+- Produces dashboards with org charts and Sankey-style income flows
+
+--------------------------------------------------
+CORE DOMAINS
+--------------------------------------------------
+
+1. TENANCY / ACCESS CONTROL
+--------------------------------
+Workspace
+- id
+- name
+- created_at
+
+Client
+- id
+- workspace_id
+- name
+
+User
+- id
+- workspace_id
+- role (admin, staff, client)
+- email
+
+--------------------------------------------------
+2. ENTITIES & OWNERSHIP GRAPH
+--------------------------------
+Entity (Company)
+- id
+- client_id
+- name
+- tax_type (partnership, s-corp, c-corp)
+- ein
+
+Owner
+- id
+- client_id
+- type (individual | entity)
+- name
+
+OwnershipEdge
+- id
+- owner_id
+- entity_id
+- ownership_percent
+- effective_start
+- effective_end
+
+(Used to generate org chart / network diagram)
+
+--------------------------------------------------
+3. QUICKBOOKS INGESTION (SOURCE DATA)
+--------------------------------
+QBConnection
+- id
+- entity_id
+- realm_id
+- access_token
+- refresh_token
+- last_synced_at
+
+Account
+- id
+- entity_id
+- qb_account_id
+- name
+- account_type
+
+TrialBalanceSnapshot
+- id
+- entity_id
+- period_year
+- period_month
+- source (quickbooks)
+- created_at
+
+TrialBalanceLine
+- id
+- snapshot_id
+- account_id
+- amount
+
+(Principle: QB data is immutable and versioned)
+
+--------------------------------------------------
+4. TAX PLANNING OVERLAYS
+--------------------------------
+Adjustment
+- id
+- entity_id
+- period_year
+- period_month
+- account_id
+- amount
+- description
+
+SpecialAllocation
+- id
+- owner_id
+- entity_id
+- period_year
+- period_month
+- allocation_rule (json)
+
+TaxVariable
+- id
+- entity_id
+- key
+- value
+- period_year
+- period_month
+
+(Used to generate proforma financials and passthrough income)
+
+--------------------------------------------------
+5. INTERCOMPANY RECONCILIATION
+--------------------------------
+IntercompanyLinkRule
+- id
+- entity_a_id
+- account_a_id
+- entity_b_id
+- account_b_id
+- match_method (exact, tolerance, sign_flip)
+
+IntercompanyMatch
+- id
+- link_rule_id
+- snapshot_id
+- matched_amount
+- status (open, partial, cleared)
+
+IntercompanyNote
+- id
+- match_id
+- note
+
+--------------------------------------------------
+KEY SYSTEM OUTPUTS
+--------------------------------------------------
+- Org chart / ownership network (OwnershipEdge)
+- Intercompany reconciliation tables
+- Passthrough income calculations (Entity → Owner)
+- Sankey diagrams of income flows
+- Proforma trial balances and financials
+
+--------------------------------------------------
+DESIGN PRINCIPLES
+--------------------------------------------------
+- Raw QuickBooks data is never overwritten
+- All calculations are derived from snapshots + overlays
+- Effective dating is used for ownership and tax rules
+- Optimized for Laravel + Eloquent + migrations
+- Structured for LLM-driven scaffolded development

@@ -8,3 +8,4 @@
 - Aligned architecture and requirements docs with the current FastAPI + React stack.
 - Added RLS policies and role constraints for client group memberships.
 - Added a helper script to seed the global client role.
+- Updated agent workflow to allow routine command execution without asking.

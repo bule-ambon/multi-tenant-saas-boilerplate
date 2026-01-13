@@ -91,3 +91,10 @@
 ## Change Summary
 - Added a seed helper to ensure the global `client` role exists.
 - Logged the role seed helper addition in docs/activity.md.
+
+# Agent Workflow Update Plan
+
+- [x] Update AGENTS.md to allow the agent to run routine commands without asking, while logging in tasks/todo.md.
+
+## Change Summary
+- Updated AGENTS.md to allow routine command execution without asking, while logging in tasks/todo.md.

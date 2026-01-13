@@ -35,6 +35,7 @@
 - Append a log of actions to `docs/activity.md`.
 - Keep changes minimal and simple; touch as little code as possible.
 - Commit and push successful changes immediately with small, clear messages.
+- If a task requires routine command execution (e.g., docker-compose, migrations, scripts), add it to `tasks/todo.md` and run it without asking.
 
 ## Commit & Pull Request Guidelines
 - Conventional Commits required (e.g., `feat: add billing webhook`).

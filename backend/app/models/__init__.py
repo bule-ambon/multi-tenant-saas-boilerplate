@@ -19,6 +19,7 @@ from app.models.client_group import (
     ClientGroupMembership,
     EntityMembership,
 )
+from app.models.entity import Entity, QBOConnection
 
 __all__ = [
     "User",
@@ -43,4 +44,6 @@ __all__ = [
     "ClientGroupEntity",
     "ClientGroupMembership",
     "EntityMembership",
+    "Entity",
+    "QBOConnection",
 ]

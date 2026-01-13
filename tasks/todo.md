@@ -134,6 +134,20 @@
 - Wired tenant header validation into tenant endpoints and enforced membership checks.
 - Added tenant header parsing tests and ran pytest in the backend container.
 
+# Entity + QBO Connection Plan
+
+- [x] Review existing models/migrations for tenant scoping and access helpers.
+- [x] Add SQLAlchemy models and Alembic migration for entities and QBO connections with 1:1 realm linkage.
+- [x] Implement CRUD endpoints for entities and QBO connections (no external API calls).
+- [x] Add unit tests for the 1:1 QBO connection constraint.
+- [x] Update docs/activity.md and add a brief change summary to tasks/todo.md.
+- [ ] Commit and push changes with Conventional Commits.
+
+## Change Summary
+- Added entities and QBO connection models/migration with 1:1 realm and entity constraints.
+- Implemented entity and QBO connection CRUD endpoints with tenant scoping and access checks.
+- Added and ran unit tests for the QBO connection uniqueness constraints.
+
 ## Change Summary
 - Enforced tenant UUID header parsing and tenant context propagation in async DB sessions.
 - Added tenant access/visibility helpers for client groups and entity memberships.

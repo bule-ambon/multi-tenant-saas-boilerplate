@@ -38,3 +38,11 @@
 ## Change Summary
 - Added Vite config to point HMR to WSS on the nginx HTTPS endpoint.
 - Updated nginx to forward WebSocket upgrade headers for Vite HMR.
+
+# Client Groups + Entity Access Plan
+
+- [ ] Review existing tenant/user/role models and alembic baseline for integration points.
+- [ ] Add SQLAlchemy models and exports for client groups, group entities, group memberships, and entity memberships.
+- [ ] Create Alembic migration with tenant-scoped tables and client-group uniqueness constraint.
+- [ ] Add or note tests for the client role group constraint (if test infra exists).
+- [ ] Update docs: append activity log and add change summary to tasks/todo.md.

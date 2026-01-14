@@ -639,6 +639,8 @@ export const useAuthStore = create<AuthState>()(
 
 ## Testing
 
+Prepare your local environment before running the suites: create/activate a Python virtual environment inside `backend/` and install its dependencies (`python -m venv venv && source venv/bin/activate` on Unix, then `pip install -r requirements.txt`); for the frontend run `npm install` once so Vitest/the tooling is available. You can run the commands below directly on your host machine without entering any Docker container unless you prefer the agent-focused workflow later in this document.
+
 ### Backend Testing
 
 ```bash
@@ -653,6 +655,8 @@ pytest --cov=app tests/
 # Run specific test file
 pytest tests/test_auth.py -v
 ```
+
+If `pytest` is missing, install it via `pip install pytest` inside the active virtual environment; the same applies if you see missing dependencies before running the suite. You can also use `python -m pytest` if your shell’s PATH does not pick up the `pytest` binary.
 
 **Example Test:**
 
@@ -687,6 +691,8 @@ npm test
 # Run with coverage
 npm test -- --coverage
 ```
+
+Run `npm install` before invoking any of these commands so the Vitest dependencies exist locally.
 
 ## Deployment
 

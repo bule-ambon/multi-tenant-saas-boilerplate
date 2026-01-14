@@ -230,3 +230,19 @@
 
 ## Change Summary
 - Committed the completed QBO ingestion backend work and captured the action in the activity log.
+
+# Backend Testing Plan
+
+- [ ] Start the stack with `docker compose up -d`.
+- [ ] Exec into `saas_backend` and run `cd /app && alembic upgrade head`.
+- [ ] From `saas_backend`, run `python -m pytest tests/ -v --cov=app`.
+- [ ] Record the outcome in `docs/activity.md`.
+
+# AGENTS Guide Plan
+
+- [ ] Review repository layout for structure context.
+- [ ] Draft `AGENTS.md` with the required contributor guidance.
+- [ ] Log the addition in `docs/activity.md` and summarize the change here.
+
+## Change Summary
+- Added the AGENTS contributor guide and logged the action in `docs/activity.md`.

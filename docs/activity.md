@@ -25,3 +25,5 @@
 - Installed frontend dependencies and ran the production build to ensure the new UI compiles cleanly (`npm install` / `npm run build`).
 - Addressed reported vulnerabilities by running `npm audit` and `npm audit fix --force`, then rebuilt (`npm run build`) to verify the new Vite/Vitest majors still compile.
 - Finalized the QBO ingestion backend work and pushed the commit to GitHub.
+- Documented the dashboard-focused frontend orientation in `frontend.md` so human developers can follow the current MVP behavior.
+- Clarified the backend/frontend testing guidance in the developer/contributing docs so the suites can be run locally once a venv/npm install is ready without forcing a Docker session.

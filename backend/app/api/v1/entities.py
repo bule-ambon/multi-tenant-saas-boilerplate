@@ -22,6 +22,8 @@ router = APIRouter()
 
 class EntityCreate(BaseModel):
     name: str
+    entity_type: Optional[str] = "Individual"
+    status: Optional[str] = "active"
     ein: Optional[str] = None
     tax_type: Optional[str] = None
     source_type: str = "MANUAL_PROFORMA"
@@ -30,6 +32,8 @@ class EntityCreate(BaseModel):
 
 class EntityUpdate(BaseModel):
     name: Optional[str] = None
+    entity_type: Optional[str] = None
+    status: Optional[str] = None
     ein: Optional[str] = None
     tax_type: Optional[str] = None
     source_type: Optional[str] = None
@@ -40,6 +44,8 @@ class EntityResponse(BaseModel):
     id: UUID
     tenant_id: UUID
     name: str
+    entity_type: str
+    status: str
     ein: Optional[str]
     tax_type: Optional[str]
     source_type: str
@@ -110,6 +116,8 @@ async def create_entity(
     entity = Entity(
         tenant_id=tenant_id,
         name=payload.name,
+        entity_type=payload.entity_type,
+        status=payload.status,
         ein=payload.ein,
         tax_type=payload.tax_type,
         source_type=payload.source_type,

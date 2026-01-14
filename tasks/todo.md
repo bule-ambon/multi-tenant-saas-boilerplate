@@ -221,3 +221,12 @@
 - Rebuilt the homepage hero, stats, and CTA messaging to narrate the passthrough roll-up story for CPAs.
 - Authored a detailed dashboard layout (client groups, entity snapshots, trial balance grid with overlay toggle, reconciliation pairs, roll-up mappings) that mirrors the key requirements.
 - Updated the shared layout/nav plus global styles so protected pages share the same polished card/grid system.
+
+# QBO Ingestion Finalization Plan
+
+- [ ] Review the pending backend QBO ingestion files to ensure tests, docs, and services are complete.
+- [ ] Log today’s QBO ingestion completion in `docs/activity.md` and note the change summary here.
+- [ ] Stage, commit with `feat: finalize qbo ingestion backend`, and push to GitHub.
+
+## Change Summary
+- Committed the completed QBO ingestion backend work and captured the action in the activity log.

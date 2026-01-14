@@ -3,7 +3,7 @@ API V1 Routes
 """
 from fastapi import APIRouter
 
-from app.api.v1 import auth, tenants, users, roles, billing, admin, entities, qbo_connections, client_groups
+from app.api.v1 import auth, tenants, users, roles, billing, admin, entities, qbo_connections, qbo_ingestion, client_groups
 
 api_router = APIRouter()
 
@@ -16,6 +16,7 @@ api_router.include_router(billing.router, prefix="/billing", tags=["Billing & Su
 api_router.include_router(admin.router, prefix="/admin", tags=["Admin"])
 api_router.include_router(entities.router, prefix="/entities", tags=["Entities"])
 api_router.include_router(qbo_connections.router, prefix="/qbo-connections", tags=["QBO Connections"])
+api_router.include_router(qbo_ingestion.router, prefix="/qbo-imports", tags=["QBO Imports"])
 api_router.include_router(client_groups.router, prefix="/client-groups", tags=["Client Groups"])
 
 __all__ = ["api_router"]

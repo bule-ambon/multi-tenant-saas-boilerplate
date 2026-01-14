@@ -23,6 +23,8 @@ class Entity(Base):
     tenant_id = Column(UUID(as_uuid=True), ForeignKey("tenants.id", ondelete="CASCADE"), nullable=False, index=True)
 
     name = Column(String(255), nullable=False)
+    entity_type = Column(String(50), nullable=False, default="Individual")
+    status = Column(String(50), nullable=False, default="active")
     ein = Column(String(20), nullable=True)
     tax_type = Column(String(50), nullable=True)
     source_type = Column(String(50), nullable=False, default="MANUAL_PROFORMA")

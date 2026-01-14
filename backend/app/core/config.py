@@ -32,11 +32,20 @@ class Settings(BaseSettings):
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
     @classmethod
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
+        return cls._parse_list_input(v)
+
+    @field_validator("QBO_SCOPES", mode="before")
+    @classmethod
+    def assemble_qbo_scopes(cls, v: Union[str, List[str]]) -> List[str]:
+        return cls._parse_list_input(v)
+
+    @staticmethod
+    def _parse_list_input(v: Union[str, List[str]]) -> List[str]:
         if isinstance(v, str):
             if v.startswith("["):
                 return json.loads(v)
             return [i.strip() for i in v.split(",") if i.strip()]
-        elif isinstance(v, list):
+        if isinstance(v, list):
             return v
         raise ValueError(v)
 
@@ -72,6 +81,15 @@ class Settings(BaseSettings):
     GITHUB_CLIENT_ID: Optional[str] = None
     GITHUB_CLIENT_SECRET: Optional[str] = None
     GITHUB_REDIRECT_URI: Optional[str] = None
+
+    # QuickBooks Online OAuth
+    QBO_CLIENT_ID: Optional[str] = None
+    QBO_CLIENT_SECRET: Optional[str] = None
+    QBO_REDIRECT_URI: Optional[str] = None
+    QBO_SCOPES: List[str] = ["com.intuit.quickbooks.accounting"]
+    QBO_AUTHORIZATION_URL: str = "https://appcenter.intuit.com/connect/oauth2"
+    QBO_TOKEN_URL: str = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer"
+    QBO_API_BASE_URL: str = "https://quickbooks.api.intuit.com"
 
     # Stripe
     STRIPE_SECRET_KEY: Optional[str] = None
@@ -183,6 +201,11 @@ class Settings(BaseSettings):
     def is_development(self) -> bool:
         """Check if running in development"""
         return self.ENVIRONMENT.lower() == "development"
+
+    @property
+    def qbo_scope_string(self) -> str:
+        """QuickBooks OAuth scopes as a single string"""
+        return " ".join(self.QBO_SCOPES)
 
 
 # Global settings instance

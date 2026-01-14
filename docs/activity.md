@@ -24,3 +24,4 @@
 - Crafted a new MVP-focused homepage hero and immersive dashboard with client group, trial balance, reconciliation, and roll-up summaries plus the supporting layout/styles.
 - Installed frontend dependencies and ran the production build to ensure the new UI compiles cleanly (`npm install` / `npm run build`).
 - Addressed reported vulnerabilities by running `npm audit` and `npm audit fix --force`, then rebuilt (`npm run build`) to verify the new Vite/Vitest majors still compile.
+- Finalized the QBO ingestion backend work and pushed the commit to GitHub.

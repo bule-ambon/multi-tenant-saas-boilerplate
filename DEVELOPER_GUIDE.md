@@ -92,7 +92,7 @@ Complete guide for developing and deploying the Multi-Tenant SaaS Platform.
 
 ```bash
 git clone <repository>
-cd Secure-Multi-Tenant-SaaS-Platform-Boilerplate-with-Billing-RBAC-and-Tenant-Isolation
+cd saas-template
 
 # Copy environment variables
 cp .env.example .env

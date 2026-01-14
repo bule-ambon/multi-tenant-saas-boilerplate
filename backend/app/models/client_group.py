@@ -4,7 +4,7 @@ Client Group and Entity Membership Models
 import uuid
 from datetime import datetime
 
-from sqlalchemy import Column, DateTime, ForeignKey, Index, String, Text, UniqueConstraint, text
+from sqlalchemy import Column, DateTime, Date, ForeignKey, Index, String, Text, UniqueConstraint, text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
@@ -72,6 +72,12 @@ class ClientGroupEntity(Base):
         index=True,
     )
     entity_id = Column(UUID(as_uuid=True), nullable=False, index=True)
+
+    # Optional metadata for client group assignments
+    start_date = Column(Date, nullable=True)
+    end_date = Column(Date, nullable=True)
+    tags = Column(Text, nullable=True)
+    notes = Column(Text, nullable=True)
 
     created_at = Column(DateTime(timezone=True), default=datetime.utcnow, nullable=False)
 

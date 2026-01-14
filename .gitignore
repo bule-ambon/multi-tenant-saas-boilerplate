@@ -27,6 +27,8 @@ wheels/
 venv/
 ENV/
 env/
+.venv/
+backend/.venv/
 
 # Node
 node_modules/

@@ -20,6 +20,13 @@ from app.models.client_group import (
     EntityMembership,
 )
 from app.models.entity import Entity, QBOConnection
+from app.models.qbo_ingestion import (
+    ClientGroupTaxYear,
+    ImportRun,
+    TrialBalanceAccount,
+    TrialBalanceLine,
+    TrialBalanceSnapshot,
+)
 
 __all__ = [
     "User",
@@ -46,4 +53,9 @@ __all__ = [
     "EntityMembership",
     "Entity",
     "QBOConnection",
+    "ClientGroupTaxYear",
+    "ImportRun",
+    "TrialBalanceAccount",
+    "TrialBalanceSnapshot",
+    "TrialBalanceLine",
 ]

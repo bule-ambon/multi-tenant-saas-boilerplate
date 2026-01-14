@@ -21,3 +21,6 @@
 - Added QBO import run persistence, OAuth connect flow, Celery ingestion worker, and persistence/API updates for trial balance snapshots plus metadata tests.
 - Fixed the `create_import_run` signature so the backend process can start, which restored the login API and removed the infinite loop the UI was seeing.
 - Added env-driven Vite HMR host config plus docker compose vars so local dev sockets use whichever hostname is served (localhost during direct dev, 192.168.4.53 behind nginx), fixing the NS_ERROR_WEBSOCKET_CONNECTION failures.
+- Crafted a new MVP-focused homepage hero and immersive dashboard with client group, trial balance, reconciliation, and roll-up summaries plus the supporting layout/styles.
+- Installed frontend dependencies and ran the production build to ensure the new UI compiles cleanly (`npm install` / `npm run build`).
+- Addressed reported vulnerabilities by running `npm audit` and `npm audit fix --force`, then rebuilt (`npm run build`) to verify the new Vite/Vitest majors still compile.

@@ -208,3 +208,16 @@
 ## Validation
 - `cd frontend && npm run dev` (direct dev) should now connect to `ws://localhost:3000` or `https://localhost` without hitting 192.168.4.53, eliminating the NS_ERROR_* resets.
 - `docker compose up` (or `npm run dev` with `VITE_HMR_HOST=192.168.4.53 VITE_HMR_PROTOCOL=wss VITE_HMR_CLIENT_PORT=443`) should continue to serve the app via nginx at `https://192.168.4.53` with WSS over port 443.
+
+# Front-End MVP Build Plan
+
+- [x] Review `docs/requirements.md` and the current frontend layout before adding new UI content.
+- [x] Define the MVP’s dashboard storytelling (hero copy, client groups, entities, TB grid, reconciliation & roll-up summaries) and mock data structures.
+- [x] Implement the updated homepage, dashboard, and shared layout/styles to surface tenant, client group, trial balance, reconciliation, and roll-up information.
+- [x] Refine the shared global styles to support the new layout and ensure the sections are readable on typical viewports.
+- [x] After coding, add a concise change summary and log entry, then revisit this plan to mark items complete.
+
+## Change Summary
+- Rebuilt the homepage hero, stats, and CTA messaging to narrate the passthrough roll-up story for CPAs.
+- Authored a detailed dashboard layout (client groups, entity snapshots, trial balance grid with overlay toggle, reconciliation pairs, roll-up mappings) that mirrors the key requirements.
+- Updated the shared layout/nav plus global styles so protected pages share the same polished card/grid system.

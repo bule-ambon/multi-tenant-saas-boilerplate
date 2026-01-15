@@ -114,6 +114,8 @@ docker-compose logs -f backend
 docker-compose down
 ```
 
+> **Note:** `AUTO_INIT_DB` defaults to `false`, so FastAPI skips calling `Base.metadata.create_all`; the Postgres service also no longer mounts an init SQL file. Always run the Alembic steps in the next section before sending traffic to the API, and only enable `AUTO_INIT_DB=true` for throwaway demos that don't require migrations.
+
 3. **Run Database Migrations:**
 
 ```bash

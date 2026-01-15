@@ -38,13 +38,16 @@ async def lifespan(app: FastAPI):
     logger.info(f"Environment: {settings.ENVIRONMENT}")
     logger.info(f"Tenancy Mode: {settings.TENANCY_MODE}")
 
-    # Initialize database
-    try:
-        await init_db()
-        logger.info("Database initialized successfully")
-    except Exception as e:
-        logger.error(f"Failed to initialize database: {e}")
-        raise
+    if settings.AUTO_INIT_DB:
+        # Initialize database when explicitly requested (avoids alembic conflicts)
+        try:
+            await init_db()
+            logger.info("Database initialized successfully")
+        except Exception as e:
+            logger.error(f"Failed to initialize database: {e}")
+            raise
+    else:
+        logger.info("Skipping automatic database initialization (AUTO_INIT_DB=false)")
 
     yield
 

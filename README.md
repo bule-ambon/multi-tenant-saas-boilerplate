@@ -234,6 +234,7 @@ APP_NAME=Multi-Tenant SaaS Platform
 ENVIRONMENT=development
 SECRET_KEY=your-secret-key-change-in-production
 DEBUG=true
+AUTO_INIT_DB=false  # keep false so Alembic handles schema creation
 
 # Database
 DATABASE_URL=postgresql://user:password@localhost:5432/saas_db
@@ -282,6 +283,8 @@ AWS_SECRET_ACCESS_KEY=your-secret-key
 AWS_S3_BUCKET=your-bucket-name
 AWS_REGION=us-east-1
 ```
+
+The Postgres container no longer mounts `scripts/init-db.sql`; instead the schema is defined by Alembic, so keep `AUTO_INIT_DB=false` (default) and run `docker-compose exec backend alembic upgrade head` before seeding users. Only flip `AUTO_INIT_DB` to `true` for throwaway demos when you want `Base.metadata.create_all` without migrations.
 
 ## 🔐 Multi-Tenant Data Isolation
 

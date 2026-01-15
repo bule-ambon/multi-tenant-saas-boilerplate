@@ -98,11 +98,16 @@ See [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) for detailed setup instructions.
 
 ## Testing
 
-### Backend Tests
+### Backend Tests (always run inside the provided virtualenv)
+
 
 ```bash
-cd backend
-pytest tests/ -v --cov=app
+python3 -m venv venv
+source venv/bin/activate
+python -m pip install -r requirements.txt
+export DATABASE_URL="your-database-url"
+python -m pytest tests/ -v --cov=app
+
 ```
 
 Requirements:
@@ -110,15 +115,10 @@ Requirements:
 - All tests must pass
 - Add tests for new features
 
-These commands are meant to run on your host machine: create/activate a Python virtual environment if you haven’t already (for example `python -m venv venv && source venv/bin/activate` on Unix), install the backend dependencies (`pip install -r requirements.txt`, which already includes `pytest`), and execute `pytest` as shown. Running the suite inside Docker is optional and covered separately in the “Migration & Testing Workflow for Agents” section below if you prefer the containerized path.
+These commands are meant to run on your host machine. If you already have a virtual environment, just activate it and skip the `python3 -m venv venv` step. The backend settings require a `DATABASE_URL`, so export it from your shell environment (as shown) or copy `.env.example` to `.env` and update the value to match your local database. Running the suite inside Docker is optional and covered separately in the “Migration & Testing Workflow for Agents” section below if you prefer the containerized path.
 
-#### Migration & Testing Workflow for Agents
 
-1. **Start the stack via Docker** – bring up the services defined in `docker-compose.yml` (`docker compose up -d`). The backend image already installs `requirements.txt`, so you do not need to run `python -m venv`/`pip install` on the host.
-2. **Run migrations inside the backend container** – if the schema might be stale, exec into `saas_backend` and run `cd /app && alembic upgrade head`. This keeps the database in sync with the latest models without touching a host `.venv`.
-3. **Execute backend tests inside the container** – stay inside `saas_backend` and run `python -m pytest tests/ -v --cov=app`. Using `python -m pytest` (not a bare `pytest`) avoids import issues where `/app` is not on `sys.path`.
-4. **Handle unexpected schema gaps** – if tests fail because columns or tables are missing (as happened before with `entity_type` and `client_group_entities` metadata), run appropriate `ALTER TABLE` statements via `docker exec saas_postgres psql -U saas_user -d saas_platform` to add the missing columns, then rerun `alembic upgrade head` and the pytest command.
-5. **Repeat the containerized workflow whenever code or migrations change** – always re-run `python -m pytest ...` inside the container after schema/model updates so you never reinstall dependencies locally.
+
 
 
 ### Frontend Tests

@@ -24,6 +24,7 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = "development"
     SECRET_KEY: str = secrets.token_urlsafe(32)
     DEBUG: bool = True
+    AUTO_INIT_DB: bool = False
     API_V1_PREFIX: str = "/api/v1"
 
     # CORS
